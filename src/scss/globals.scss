@@ -1,0 +1,32 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Arimo');
+
+// Variables
+$base: #2980B9;
+$white: #FFFFFF;
+$yellow: #F1C40F;
+$home-color: #BA0C2F;
+$away-color: #000000;
+$away-gradient: linear-gradient(lighten($away-color, 25), $away-color);
+$home-gradient: linear-gradient(lighten($home-color, 25), $home-color);
+$away-gradient-dark: linear-gradient($away-color, darken($away-color, 20));
+$home-gradient-dark: linear-gradient($home-color, darken($home-color, 20));
+$blue-grad: linear-gradient($base, darken($base, 30));
+$alpha: 0.20;
+
+// Mixins
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin flex-center {
+    align-items: center;
+    justify-content: center;
+}
