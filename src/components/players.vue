@@ -44,7 +44,7 @@ export default {
         @include flex-center;
         font-family: "Arimo", sans-serif;
         font-size: 24px;
-        margin-bottom: 15px;  
+        margin-bottom: 15px;
         color: $white;
         text-transform: uppercase;
         width: 100%;
