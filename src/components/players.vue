@@ -2,12 +2,12 @@
   <div id="scoreboard-players">
     <div class="players">
         <div class="player batter">
-        <span>{{batter.name}}</span>
-        <span class="bold">{{batter.hits}} for {{batter.timesUp}}</span>
+        <span>{{teams.home.players[0].lastName}}</span>
+        <span class="bold">{{teams.home.players[0].hits}} for {{teams.home.players[0].timesUp}}</span>
         </div>
         <div class="player pitcher">
-        <span>{{pitcher.name}}</span>
-        <span>P: <span class="bold">{{pitcher.pitchCount}}</span></span>
+        <span>{{teams.away.players[0].lastName}}</span>
+        <span>P: <span class="bold">{{teams.away.players[0].pitches}}</span></span>
         </div>
     </div>
   </div>
@@ -16,17 +16,10 @@
 <script>
 export default {
   name: 'scoreboard-players',
+  props: ["teams"],
   data () {
     return {
-      batter: {
-          name: "posey",
-          hits: 1,
-          timesUp: 2
-      },
-      pitcher: {
-          name: "garret",
-          pitchCount: 43
-      }
+
     }
   }
 }

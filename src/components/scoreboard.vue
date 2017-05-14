@@ -1,7 +1,7 @@
 <template>
   <div id="scoreboard">
-    <players></players>
-    <scores></scores>
+    <players v-bind:teams="this.teams"></players>
+    <scores v-bind:teams="this.teams" v-bind:scoreboard="this.scoreboard"></scores>
   </div>
 </template>
 
@@ -15,6 +15,7 @@ export default {
       "players": Players,
       "scores": Scores
   },
+  props: ["teams", "scoreboard"],
   data () {
     return {
       

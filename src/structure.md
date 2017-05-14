@@ -1,8 +1,8 @@
 # Data Structure
 
-Two teams (Home/Away):
+##Teams (Home/Away):
 
-## Team Object
+### Team Object
 
 * __city__: String
 * __name__: String
@@ -25,7 +25,7 @@ Two teams (Home/Away):
         * __starting__: Boolean
         * __bench__: Boolean
 
-## Team Functions
+### Team Functions
 
 1. Create a team:
     
@@ -54,3 +54,35 @@ Two teams (Home/Away):
 3. Substitute a player:
 
     >Create a way for a player to get substituted.  A current player's _bench_ boolean will get set to true and another player's _bench_ boolean will get set to false.  Will probably need to update _battingOrder_ and _position_ for new player to set it to the old player's _battingOrder_ and _position_.  If it's a pitcher then we'll need to reset the _pitchCount_ back to zero to start with the fresh pitcher.
+
+## Scoreboard
+
+### Data
+
+* __batter__ (player from _team_'s players array): Object
+* __batterName__ (batter.lastName): String
+* __hits__ (batter.hits): Number
+* __timesUp__ (batter.timesUp): Number
+* __pitcher__ (player from _team_'s players array): Object
+* __pitcherName__ (pitcher.lastName): String
+* __pitches__ (pitcher.pitches): Number
+* __awayAbbr__ (away.abbreviation): String
+* __awayScore__ (away.score): Number
+* __homeAbbr__ (home.abbreviation): String
+* __homeScore__ (home.score): Number
+* __inning__: Number
+* __inningHalf__ (bottom/top): String
+* __bases__: Object
+    * __first__: Boolean
+    * __second__: Boolean
+    * __third__: Boolean
+* __pitchCount__: Object
+    * __balls__: Number
+    * __strikes__: Number
+* __outs__: Object
+    * __one__: Boolean
+    * __two__: Boolean
+    * __three__: Boolean
+
+### Functions
+

@@ -3,34 +3,34 @@
     <div class="teams">
         <div class="score-row">
         <!-- AWAY TEAM -->
-        <div class="away-team team">{{away.name}}</div>
+        <div class="away-team team">{{teams.away.abbreviation}}</div>
         <!-- AWAY SCORE -->
-        <div class="score away-score">{{away.score}}</div>
+        <div class="score away-score">{{teams.away.score}}</div>
         <!-- INNING COUNT & BASES -->
         <div class="inning-bases blue-grad">
             <div class="inning flex-column">
-              <span class="inning-top" v-bind:class="{yellow: topOfInning}" v-on:click="toggleTopOfInning" v-show="!bottomOfInning"></span>
-              <span class="inning-number">{{inning}}</span>
-              <span class="inning-bottom" v-bind:class="{yellow: bottomOfInning}" v-on:click="toggleBottomInning" v-show="!topOfInning"></span>
+              <span class="inning-top" v-bind:class="{yellow: scoreboard.inningHalf.top}" v-on:click="toggleTopOfInning" v-show="!scoreboard.inningHalf.bottom"></span>
+              <span class="inning-number">{{scoreboard.inning}}</span>
+              <span class="inning-bottom" v-bind:class="{yellow: scoreboard.inningHalf.bottom}" v-on:click="toggleBottomInning" v-show="!scoreboard.inningHalf.top"></span>
             </div>
             <div class="bases flex-row">
-              <span class="base third-base" v-bind:class="{yellow: basesOccupied.third}" v-on:click="toggleThirdBase"></span>
-              <span class="base second-base" v-bind:class="{yellow: basesOccupied.second}" v-on:click="toggleSecondBase"></span>
-              <span class="base first-base" v-bind:class="{yellow: basesOccupied.first}" v-on:click="toggleFirstBase"></span>
+              <span class="base third-base" v-bind:class="{yellow: scoreboard.bases.third}" v-on:click="toggleThirdBase"></span>
+              <span class="base second-base" v-bind:class="{yellow: scoreboard.bases.second}" v-on:click="toggleSecondBase"></span>
+              <span class="base first-base" v-bind:class="{yellow: scoreboard.bases.first}" v-on:click="toggleFirstBase"></span>
             </div>
         </div>
         </div>
         <div class="score-row">
         <!-- HOME TEAM -->
-        <div class="home-team team">{{home.name}}</div>
+        <div class="home-team team">{{teams.home.abbreviation}}</div>
         <!-- HOME SCORE -->
-        <div class="score home-score">{{home.score}}</div>
+        <div class="score home-score">{{teams.home.score}}</div>
         <!-- PITCH COUNT & OUTS -->
         <div class="pitch-count-outs blue-grad">
-            <span class="pitch-count">{{pitchCount.balls}}-{{pitchCount.strikes}}</span>
+            <span class="pitch-count">{{scoreboard.pitchCount.balls}}-{{scoreboard.pitchCount.strikes}}</span>
             <div class="outs">
-            <span class="out-1 out-circle" v-bind:class="{yellow: firstOut}" v-on:click="toggleFirstOut"></span>
-            <span class="out-2 out-circle" v-bind:class="{yellow: secondOut}" v-on:click="toggleSecondOut"></span>
+            <span class="out-1 out-circle" v-bind:class="{yellow: scoreboard.outs.one}" v-on:click="toggleFirstOut"></span>
+            <span class="out-2 out-circle" v-bind:class="{yellow: scoreboard.outs.two}" v-on:click="toggleSecondOut"></span>
             </div>
         </div>
         </div>
@@ -41,55 +41,35 @@
 <script>
 export default {
   name: 'scoreboard-scores',
+  props: ["teams", "scoreboard"],
   data () {
     return {
-        away: {
-            name: "SFG",
-            score: 3
-        },
-        home: {
-            name: "CIN",
-            score: 8
-        },
-        inning: 5,
-        bottomOfInning: true,
-        topOfInning: false,
-        pitchCount: {
-        balls: 3,
-        strikes: 2
-        },
-        basesOccupied: {
-        first: false,
-        second: false,
-        third: false
-        },
-        firstOut: false,
-        secondOut: false
+
     }
   },
   methods: {
     toggleFirstOut: function() {
-      this.firstOut = !this.firstOut;
+      this.scoreboard.outs.one = !this.scoreboard.outs.one;
     },
     toggleSecondOut: function() {
-      this.secondOut = !this.secondOut;
+      this.scoreboard.outs.two = !this.scoreboard.outs.two;
     },
     toggleFirstBase: function() {
-      this.basesOccupied.first = !this.basesOccupied.first;
+      this.scoreboard.bases.first = !this.scoreboard.bases.first;
     },
     toggleSecondBase: function() {
-      this.basesOccupied.second = !this.basesOccupied.second;
+      this.scoreboard.bases.second = !this.scoreboard.bases.second;
     },
     toggleThirdBase: function() {
-      this.basesOccupied.third = !this.basesOccupied.third;
+      this.scoreboard.bases.third = !this.scoreboard.bases.third;
     },
     toggleBottomInning: function() {
-      this.bottomOfInning = false;
-      this.topOfInning = true;
+      this.scoreboard.inningHalf.bottom = false;
+      this.scoreboard.inningHalf.top = true;
     },
     toggleTopOfInning: function() {
-      this.topOfInning = false;
-      this.bottomOfInning = true;
+      this.scoreboard.inningHalf.top = false;
+      this.scoreboard.inningHalf.bottom = true;
     }
   }
 }
@@ -154,6 +134,7 @@ export default {
     .inning-bases {
       @include flex-row;
       align-items: center;
+      justify-content: space-between;
     }
   
     .inning {
