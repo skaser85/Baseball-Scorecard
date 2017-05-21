@@ -9,14 +9,19 @@
         <!-- INNING COUNT & BASES -->
         <div class="inning-bases blue-grad">
             <div class="inning flex-column">
-              <span class="inning-top" v-bind:class="{yellow: scoreboard.inningHalf.top}" v-on:click="toggleTopOfInning" v-show="!scoreboard.inningHalf.bottom"></span>
+              <input type="radio" checked="checked" id="inning-top" value="top" v-model="scoreboard.inningHalf">
+              <label for="inning-top" class="inning-top"></label>
               <span class="inning-number">{{scoreboard.inning}}</span>
-              <span class="inning-bottom" v-bind:class="{yellow: scoreboard.inningHalf.bottom}" v-on:click="toggleBottomInning" v-show="!scoreboard.inningHalf.top"></span>
+              <input type="radio" id="inning-bottom" value="bottom" v-model="scoreboard.inningHalf">
+              <label for="inning-bottom" class="inning-bottom"></label>
             </div>
             <div class="bases flex-row">
-              <span class="base third-base" v-bind:class="{yellow: scoreboard.bases.third}" v-on:click="toggleThirdBase"></span>
-              <span class="base second-base" v-bind:class="{yellow: scoreboard.bases.second}" v-on:click="toggleSecondBase"></span>
-              <span class="base first-base" v-bind:class="{yellow: scoreboard.bases.first}" v-on:click="toggleFirstBase"></span>
+              <input type="checkbox" value="third" id="third-base" v-model="scoreboard.bases">
+              <label for="third-base" class="base third-base"></label>
+              <input type="checkbox" value="second" id="second-base" v-model="scoreboard.bases">
+              <label for="second-base" class="base second-base"></label>
+              <input type="checkbox" value="first" id="first-base" v-model="scoreboard.bases">
+              <label for="first-base" class="base first-base"></label>
             </div>
         </div>
         </div>
@@ -29,8 +34,10 @@
         <div class="pitch-count-outs blue-grad">
             <span class="pitch-count">{{scoreboard.pitchCount.balls}}-{{scoreboard.pitchCount.strikes}}</span>
             <div class="outs">
-            <span class="out-1 out-circle" v-bind:class="{yellow: scoreboard.outs.one}" v-on:click="toggleFirstOut"></span>
-            <span class="out-2 out-circle" v-bind:class="{yellow: scoreboard.outs.two}" v-on:click="toggleSecondOut"></span>
+              <input type="checkbox" value="1" id="first-out" v-model="scoreboard.outs">
+              <label for="first-out" class="out-circle first-out"></label>
+              <input type="checkbox" value="2" id="second-out" v-model="scoreboard.outs">
+              <label for="second-out" class="out-circle second-out"></label>
             </div>
         </div>
         </div>
@@ -48,29 +55,7 @@ export default {
     }
   },
   methods: {
-    toggleFirstOut: function() {
-      this.scoreboard.outs.one = !this.scoreboard.outs.one;
-    },
-    toggleSecondOut: function() {
-      this.scoreboard.outs.two = !this.scoreboard.outs.two;
-    },
-    toggleFirstBase: function() {
-      this.scoreboard.bases.first = !this.scoreboard.bases.first;
-    },
-    toggleSecondBase: function() {
-      this.scoreboard.bases.second = !this.scoreboard.bases.second;
-    },
-    toggleThirdBase: function() {
-      this.scoreboard.bases.third = !this.scoreboard.bases.third;
-    },
-    toggleBottomInning: function() {
-      this.scoreboard.inningHalf.bottom = false;
-      this.scoreboard.inningHalf.top = true;
-    },
-    toggleTopOfInning: function() {
-      this.scoreboard.inningHalf.top = false;
-      this.scoreboard.inningHalf.bottom = true;
-    }
+
   }
 }
 </script>
@@ -162,6 +147,14 @@ export default {
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       margin-bottom: 5px;
     }
+
+    #inning-top:checked ~ .inning-top {
+      background: $yellow;
+    }
+
+    #inning-bottom:checked ~ .inning-bottom {
+      background: $yellow;
+    }
     
     .bases {
       @include flex-row;
@@ -184,8 +177,9 @@ export default {
     }
     
     .base {
-      width: 15px;
-      height: 15px;
+      $size: 15px;
+      width: $size;
+      height: $size;
       background: rgba(255,255,255,0.5);
       border-radius: 0;
       box-shadow: none;
@@ -195,6 +189,23 @@ export default {
     
     .second-base {
       align-self: flex-start;
+    }
+
+    input[type=checkbox], input[type=radio] {
+      display: none;
+      opacity: 0;
+    }
+
+    #first-base:checked ~ .first-base {
+      background: $yellow;
+    }
+
+    #second-base:checked ~ .second-base {
+      background: $yellow;
+    }
+
+    #third-base:checked ~ .third-base {
+      background: $yellow;
     }
     
     .pitch-count {
@@ -207,11 +218,11 @@ export default {
       justify-content: center;
     }
     
-    .out-1 {
+    .first-out {
       margin-right: 10px;
     }
     
-    .out-2 {
+    .second-out {
       margin-right: 10px;
     }
     
@@ -220,6 +231,14 @@ export default {
       height: 20px;
       background: $white;
       border-radius: 50%;
+    }
+
+    #first-out:checked ~ .first-out {
+      background: $yellow;
+    }
+
+    #second-out:checked ~ .second-out {
+      background: $yellow;
     }
 
     .yellow {

@@ -31,10 +31,10 @@ export default {
               lastName: "Votto",
               number: 19,
               position: "1B",
-              timesUp: 3,
-              hits: 2,
+              timesUp: 0,
+              hits: 0,
               pitches: 0,
-              battingOrder: 3,
+              battingOrder: 0,
               starting: true,
               bench: false
             }
@@ -49,6 +49,8 @@ export default {
             secondary: "#000000",
             tertiary: "#8b6f4e"
           },
+          battingTeam: "home",
+          fieldingTeam: "away",
           score: 0,
           players: [
             {
@@ -56,10 +58,10 @@ export default {
               lastName: "Bumgarner",
               number: 40,
               position: "SP",
-              timesUp: 2,
-              hits: 1,
-              pitches: 25,
-              battingOrder: 9,
+              timesUp: 0,
+              hits: 0,
+              pitches: 0,
+              battingOrder: 0,
               starting: true,
               bench: false
             }
@@ -67,25 +69,14 @@ export default {
         }
       },
       scoreboard: {
-        inning: 0,
-        inningHalf: {
-          top: true,
-          bottom: false
-        },
-        bases: {
-          first: false,
-          second: false,
-          third: false
-        },
+        inning: 1,
+        inningHalf: "top",
+        bases: [],
         pitchCount: {
-          balls: 3,
-          strikes: 2
+          balls: 0,
+          strikes: 0
         },
-        outs: {
-          one: false,
-          two: false,
-          three: false
-        }
+        outs: []
       }
     }
   }
