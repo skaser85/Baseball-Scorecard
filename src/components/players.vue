@@ -1,13 +1,13 @@
 <template>
   <div id="scoreboard-players">
     <div class="players">
-        <div class="player batter">
-        <span>{{teams.home.players[0].lastName}}</span>
-        <span class="bold">{{teams.home.players[0].hits}} for {{teams.home.players[0].timesUp}}</span>
+        <div class="player batter" v-bind:class="{ home: homeBatting, away: awayBatting }">
+        <span>{{battingTeam.players[0].lastName}}</span>
+        <span class="bold">{{battingTeam.players[0].hits}} for {{battingTeam.players[0].timesUp}}</span>
         </div>
-        <div class="player pitcher">
-        <span>{{teams.away.players[0].lastName}}</span>
-        <span>P: <span class="bold">{{teams.away.players[0].pitches}}</span></span>
+        <div class="player pitcher" v-bind:class="{ home: homePitching, away: awayPitching }">
+        <span>{{pitchingTeam.players[0].lastName}}</span>
+        <span>P: <span class="bold">{{pitchingTeam.players[0].pitches}}</span></span>
         </div>
     </div>
   </div>
@@ -16,10 +16,13 @@
 <script>
 export default {
   name: 'scoreboard-players',
-  props: ["teams"],
+  props: ["battingTeam", "pitchingTeam"],
   data () {
     return {
-
+        homeBatting: this.battingTeam.side === "home" ? true : false,
+        homePitching: this.pitchingTeam.side === "home" ? true : false,
+        awayBatting: this.battingTeam.side === "away" ? true : false,
+        awayPitching: this.pitchingTeam.side === "away" ? true : false
     }
   }
 }
@@ -55,15 +58,21 @@ export default {
     }
 
     .batter {
-        background: $away-color;
-        background-image: $away-gradient;
         border-radius: 5px 5px 0 0;
+    }
+
+    .home {
+        background: $home-color;
+        background-image: $home-gradient;
     }
   
     .pitcher {
-        background: $home-color;
-        background-image: $home-gradient;
         border-radius: 0 0 5px 5px;
+    }
+
+    .away {
+        background: $away-color;
+        background-image: $away-gradient;
     }
 
     .bold {

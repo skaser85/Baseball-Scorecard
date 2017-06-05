@@ -9,7 +9,7 @@
         <!-- INNING COUNT & BASES -->
         <div class="inning-bases blue-grad">
             <div class="inning flex-column">
-              <input type="radio" checked="checked" id="inning-top" value="top" v-model="scoreboard.inningHalf">
+              <input type="radio" id="inning-top" value="top" v-model="scoreboard.inningHalf">
               <label for="inning-top" class="inning-top"></label>
               <span class="inning-number">{{scoreboard.inning}}</span>
               <input type="radio" id="inning-bottom" value="bottom" v-model="scoreboard.inningHalf">

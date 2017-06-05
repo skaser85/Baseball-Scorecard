@@ -16,6 +16,7 @@ export default {
     return {
       teams: {
         home: {
+          side: "home",
           city: "Cincinnati",
           name: "Reds",
           abbreviation: "CIN",
@@ -41,6 +42,7 @@ export default {
           ]
         },
         away: {
+          side: "away",
           city: "San Francisco",
           name: "Giants",
           abbreviation: "SF",
@@ -49,8 +51,6 @@ export default {
             secondary: "#000000",
             tertiary: "#8b6f4e"
           },
-          battingTeam: "home",
-          fieldingTeam: "away",
           score: 0,
           players: [
             {
@@ -70,7 +70,7 @@ export default {
       },
       scoreboard: {
         inning: 1,
-        inningHalf: "top",
+        inningHalf: "bottom",
         bases: [],
         pitchCount: {
           balls: 0,

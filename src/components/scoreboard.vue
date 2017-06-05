@@ -1,7 +1,7 @@
 <template>
   <div id="scoreboard">
-    <players v-bind:teams="this.teams"></players>
-    <scores v-bind:teams="this.teams" v-bind:scoreboard="this.scoreboard"></scores>
+    <players v-bind:battingTeam="battingTeam" v-bind:pitchingTeam="pitchingTeam"></players>
+    <scores v-bind:teams="teams" v-bind:scoreboard="scoreboard"></scores>
   </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
   props: ["teams", "scoreboard"],
   data () {
     return {
-      
+      battingTeam: this.scoreboard.inningHalf === "top" ? this.teams.away : this.teams.home,
+      pitchingTeam: this.scoreboard.inningHalf === "top" ? this.teams.home : this.teams.away
     }
   }
 }
