@@ -21,6 +21,12 @@ export default {
       battingTeam: this.scoreboard.inningHalf === "top" ? this.teams.away : this.teams.home,
       pitchingTeam: this.scoreboard.inningHalf === "top" ? this.teams.home : this.teams.away
     }
+  },
+  methods: {
+    // inningChange: function(half) {
+    //   this.$emit("inningChange", half);
+    //   console.log("scoreboard.vue inningChange fired with " + half + "as the arg");
+    // }
   }
 }
 </script>

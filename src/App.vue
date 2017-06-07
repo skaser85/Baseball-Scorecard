@@ -79,6 +79,15 @@ export default {
         outs: []
       }
     }
+  },
+  methods: {
+
+  },
+  created() {
+    this.$on("inningChange", function(half) {
+      console.log(half);
+      this.scoreboard.inningHalf = half;
+    })
   }
 }
 </script>
