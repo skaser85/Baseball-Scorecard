@@ -1,7 +1,7 @@
 <template>
   <div id="scoreboard">
     <players v-bind:battingTeam="battingTeam" v-bind:pitchingTeam="pitchingTeam"></players>
-    <scores v-bind:teams="teams" v-bind:scoreboard="scoreboard"></scores>
+    <scores v-bind:teams="teams" v-bind:scoreboard="scoreboard" v-bind:inningHalf="inningHalf"></scores>
   </div>
 </template>
 
@@ -15,18 +15,15 @@ export default {
       "players": Players,
       "scores": Scores
   },
-  props: ["teams", "scoreboard"],
+  props: ["teams", "scoreboard", "inningHalf"],
   data () {
     return {
-      battingTeam: this.scoreboard.inningHalf === "top" ? this.teams.away : this.teams.home,
-      pitchingTeam: this.scoreboard.inningHalf === "top" ? this.teams.home : this.teams.away
+      battingTeam: this.inningHalf === "top" ? this.teams.away : this.teams.home,
+      pitchingTeam: this.inningHalf === "top" ? this.teams.home : this.teams.away
     }
   },
   methods: {
-    // inningChange: function(half) {
-    //   this.$emit("inningChange", half);
-    //   console.log("scoreboard.vue inningChange fired with " + half + "as the arg");
-    // }
+
   }
 }
 </script>

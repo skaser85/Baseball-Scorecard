@@ -9,10 +9,10 @@
         <!-- INNING COUNT & BASES -->
         <div class="inning-bases blue-grad">
             <div class="inning flex-column">
-              <input type="radio" id="inning-top" value="top" v-model="scoreboard.inningHalf" v-on:click.sync="inningTop">
+              <input type="radio" id="inning-top" value="top" v-model="inningHalf" v-on:click="inningTop">
               <label for="inning-top" class="inning-top"></label>
               <span class="inning-number">{{scoreboard.inning}}</span>
-              <input type="radio" id="inning-bottom" value="bottom" v-model="scoreboard.inningHalf" v-on:click.sync="inningBottom">
+              <input type="radio" id="inning-bottom" value="bottom" v-model="inningHalf" v-on:click="inningBottom">
               <label for="inning-bottom" class="inning-bottom"></label>
             </div>
             <div class="bases flex-row">
@@ -48,7 +48,7 @@
 <script>
 export default {
   name: 'scoreboard-scores',
-  props: ["teams", "scoreboard"],
+  props: ["teams", "scoreboard", "inningHalf"],
   data () {
     return {
 

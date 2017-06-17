@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <scoreboard v-bind:teams="teams" v-bind:scoreboard="scoreboard"></scoreboard>
+    <scoreboard v-bind:teams="teams" v-bind:scoreboard="scoreboard" v-bind:inningHalf="inningHalf"></scoreboard>
   </div>
 </template>
 
@@ -83,10 +83,15 @@ export default {
   methods: {
 
   },
+  computed: {
+    inningHalf() {
+      return this.scoreboard.inningHalf;
+    }
+  },
   created() {
     this.$on("inningChange", function(half) {
       console.log(half);
-      this.scoreboard.inningHalf = half;
+      this.inningHalf = half;
     })
   }
 }
