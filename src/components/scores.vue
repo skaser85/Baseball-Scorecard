@@ -3,16 +3,16 @@
     <div class="teams">
         <div class="score-row">
         <!-- AWAY TEAM -->
-        <div class="away-team team">{{teams.away.abbreviation}}</div>
+        <div class="away-team team">{{awayTeam.abbreviation}}</div>
         <!-- AWAY SCORE -->
-        <div class="score away-score">{{teams.away.score}}</div>
+        <div class="score away-score">{{awayTeam.score}}</div>
         <!-- INNING COUNT & BASES -->
         <div class="inning-bases blue-grad">
             <div class="inning flex-column">
-              <input type="radio" id="inning-top" value="top" v-model="inningHalf" v-on:click="inningTop">
+              <input type="radio" id="inning-top" value="top" v-model="scoreboard.inningHalf" v-on:click="setInning('top')">
               <label for="inning-top" class="inning-top"></label>
               <span class="inning-number">{{scoreboard.inning}}</span>
-              <input type="radio" id="inning-bottom" value="bottom" v-model="inningHalf" v-on:click="inningBottom">
+              <input type="radio" id="inning-bottom" value="bottom" v-model="scoreboard.inningHalf" v-on:click="setInning('bottom')">
               <label for="inning-bottom" class="inning-bottom"></label>
             </div>
             <div class="bases flex-row">
@@ -27,9 +27,9 @@
         </div>
         <div class="score-row">
         <!-- HOME TEAM -->
-        <div class="home-team team">{{teams.home.abbreviation}}</div>
+        <div class="home-team team">{{homeTeam.abbreviation}}</div>
         <!-- HOME SCORE -->
-        <div class="score home-score">{{teams.home.score}}</div>
+        <div class="score home-score">{{homeTeam.score}}</div>
         <!-- PITCH COUNT & OUTS -->
         <div class="pitch-count-outs blue-grad">
             <span class="pitch-count">{{scoreboard.pitchCount.balls}}-{{scoreboard.pitchCount.strikes}}</span>
@@ -46,24 +46,20 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: 'scoreboard-scores',
-  props: ["teams", "scoreboard", "inningHalf"],
   data () {
     return {
 
     }
   },
   methods: {
-    inningTop: function() {
-      this.$emit("inningChange", "top");
-      console.log("scores.vue inningTop fired");
-    },
-    inningBottom: function() {
-      this.$emit("inningChange", "bottom");
-      console.log("scores.vue inningBottom fired");
+    setInning(half) {
+      this.$store.commit("setInning", half);
     }
-  }
+  },
+  computed: mapGetters(["homeTeam", "awayTeam", "scoreboard"])
 }
 </script>
 
@@ -86,7 +82,6 @@ export default {
       font-size: 45px;
       line-height: 45px;
       @include flex-column;
-      font-family: "Arimo", sans-serif;
     }
 
     .score-row {

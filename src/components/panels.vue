@@ -1,19 +1,15 @@
 <template>
-  <div id="scoreboard">
-    <players></players>
-    <scores></scores>
+  <div id="panels">
+    <teamsPanel></teamsPanel>
   </div>
 </template>
 
 <script>
-import Players from "./players.vue";
-import Scores from "./scores.vue";
-
+import TeamsPanel from "./teamsPanel.vue";
 export default {
-  name: 'scoreboard',
+  name: 'panels',
   components: {
-      "players": Players,
-      "scores": Scores
+    "teamsPanel": TeamsPanel
   },
   data () {
     return {
@@ -31,9 +27,5 @@ export default {
 
     *, *:before, *:after {
         box-sizing: border-box;
-    }
-
-    #scoreboard {
-        width: 100%;
     }
 </style>

@@ -5,7 +5,7 @@
         <span>{{battingTeam.players[0].lastName}}</span>
         <span class="bold">{{battingTeam.players[0].hits}} for {{battingTeam.players[0].timesUp}}</span>
         </div>
-        <div class="player pitcher" v-bind:class="{ home: homePitching, away: awayPitching }">
+        <div class="player pitcher" v-bind:class="{ home: !homeBatting, away: !awayBatting }">
         <span>{{pitchingTeam.players[0].lastName}}</span>
         <span>P: <span class="bold">{{pitchingTeam.players[0].pitches}}</span></span>
         </div>
@@ -14,17 +14,15 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: 'scoreboard-players',
-  props: ["battingTeam", "pitchingTeam"],
   data () {
     return {
-        homeBatting: this.battingTeam.side === "home" ? true : false,
-        homePitching: this.pitchingTeam.side === "home" ? true : false,
-        awayBatting: this.battingTeam.side === "away" ? true : false,
-        awayPitching: this.pitchingTeam.side === "away" ? true : false
+        
     }
-  }
+  },
+  computed: mapGetters(["homeTeam", "awayTeam", "battingTeam", "pitchingTeam", "homeBatting", "awayBatting"])
 }
 </script>
 
