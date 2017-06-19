@@ -1,19 +1,12 @@
 <template>
-  <div id="teams-panel">
+  <div id="panel">
     <div class="panel">
         <div class="panel-header">
             <span class="panel-title">Teams</span>
             <span class="panel-action opened" v-bind:class="{closed: closed}" v-on:click="togglePanel"></span>
         </div>
-        <div class="panel-content teams-panel" v-bind:class="{closed: closed}">
-            <div class="team home-team">
-                <label for="home-team-name">Home Team Name</label>
-                <input type="text" id="home-team-name" v-model="homeTeam.name" value="homeTeam.name">
-            </div>
-            <div class="team away-team">
-                <label for="away-team-name">Away Team Name</label>
-                <input type="text" id="away-team-name" v-model="awayTeam.name" value="awayTeam.name">
-            </div>
+        <div class="panel-content" v-bind:class="{closed: closed}">
+            this is panel content
         </div>
     </div>
   </div>
@@ -22,7 +15,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  name: 'teams-panel',
+  name: 'panel',
   data () {
     return {
       closed: false
@@ -32,8 +25,7 @@ export default {
     togglePanel() {
         this.closed = !this.closed;
     }
-  },
-  computed: mapGetters(["homeTeam", "awayTeam", "scoreboard"])
+  }
 }
 </script>
 
@@ -44,7 +36,6 @@ export default {
         box-sizing: border-box;
     }
 
-    // PANEL CSS
     .panel {
         width: 100%;
         @include flex-column; 
@@ -86,20 +77,5 @@ export default {
 
     .panel-content.closed {
         display: none;
-    }
-
-    // PANEL CONTENT CSS
-    .teams-panel {
-        padding: 10px 20px;
-        @include flex-column;
-        @include flex-center;
-    }
-
-    .team {
-        padding: 8px 0;
-    }
-
-    .home-team {
-        border-bottom: 1px solid #333;
     }
 </style>
