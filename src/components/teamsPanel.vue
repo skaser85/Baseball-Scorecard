@@ -8,6 +8,10 @@
         <div class="panel-content teams-panel" v-bind:class="{closed: closed}">
             <div class="team home-team">
                 <label for="home-team-name">Home Team Name</label>
+                <select v-model="homeTeam.name">
+                    <option disabled value="">Please Select a Team</option>
+                    <option v-for="team in teamNames" v-bind:value="team">{{team}}</option>
+                </select>
                 <input type="text" id="home-team-name" v-model="homeTeam.name" value="homeTeam.name">
             </div>
             <div class="team away-team">
@@ -33,7 +37,7 @@ export default {
         this.closed = !this.closed;
     }
   },
-  computed: mapGetters(["homeTeam", "awayTeam", "scoreboard"])
+  computed: mapGetters(["homeTeam", "awayTeam", "scoreboard", "teamNames"])
 }
 </script>
 

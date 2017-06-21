@@ -1,19 +1,26 @@
 export default {
     // getters go here
+    teamNames(state) {
+        var teams = [];
+        state.teams.forEach((team) => {
+            teams.push(team.name);
+        });
+        return teams;
+    },
     homeTeam(state) {
-        return state.teams.home;
+        return state.homeTeam;
     },
     awayTeam(state) {
-        return state.teams.away;
+        return state.awayTeam;
     },
     scoreboard(state) {
         return state.scoreboard;
     },
     battingTeam(state) {
-        return state.scoreboard.inningHalf === "top" ? state.teams.away : state.teams.home;
+        return state.scoreboard.inningHalf === "top" ? state.awayTeam : state.homeTeam;
     },
     pitchingTeam(state) {
-        return state.scoreboard.inningHalf === "top" ? state.teams.home : state.teams.away;
+        return state.scoreboard.inningHalf === "top" ? state.homeTeam : state.awayTeam;
     },
     homeBatting(state) {
         return state.scoreboard.inningHalf === "bottom";
